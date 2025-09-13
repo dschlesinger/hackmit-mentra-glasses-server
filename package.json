@@ -1,17 +1,18 @@
 {
-  "name": "hackmit-mentra-glasses-server",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@types/bun": "latest",
-    "@types/node": "^24.3.3",
-    "tsx": "^4.20.5"
-  },
-  "peerDependencies": {
-    "typescript": "^5.9.2"
+  "name": "my-first-mentraos-app",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "bun run dist/index.js",
+    "dev": "bun --watch src/index.ts"
   },
   "dependencies": {
-    "@mentra/sdk": "^2.1.22"
+    "@mentra/sdk": "latest",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
   }
 }
