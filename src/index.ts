@@ -74,8 +74,6 @@ class MyMentraOSApp extends AppServer {
     // Create app events
     session.layouts.showTextWall('Hello\nWorld')
 
-
-
     app.post('/change-song', (req, res) => {
 
         const { song, author } = req.body;
@@ -100,7 +98,27 @@ class MyMentraOSApp extends AppServer {
 
         await typeWriter(`${type}: ${message}`, 100, session);
 
-        sleep(5000).then(
+        await sleep(5000).then(
+            () => {
+                // Reset
+                session.layouts.showDoubleTextWall(currentSong, currentAuthor);
+            }
+        );
+
+        res.json({
+            status: 'success',
+            message: 'Notification received'
+        });
+    })
+
+    app.post('/cover-image', async (req, res) => {
+
+        const { ascii } =  req.body;
+
+        session.layouts.showTextWall(ascii);
+
+        // Make sure to await or session disconnects
+        await sleep(5000).then(
             () => {
                 // Reset
                 session.layouts.showDoubleTextWall(currentSong, currentAuthor);
